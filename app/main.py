@@ -5,7 +5,6 @@ import time
 import onewire
 import senko
 import utime
-import datatime
 import sys, os
 from config import *
 from machine import Pin
@@ -81,7 +80,7 @@ Xe = 0.0
 
 def uptime():
     u = utime.time() - int(start)
-    u = str(datetime.timedelta(seconds=u))
+    u = str(utime.timedelta(seconds=u))
     u = "Uptime: " + u
     return u
     
