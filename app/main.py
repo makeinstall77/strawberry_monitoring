@@ -4,6 +4,7 @@ import network
 import time
 import onewire
 import senko
+import utime
 from config import *
 from machine import Pin
 from micropyserver import MicroPyServer
