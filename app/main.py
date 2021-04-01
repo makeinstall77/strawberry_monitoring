@@ -65,6 +65,8 @@ except Exception as e:
     print (e)
     pass
 
+print("OTA end")
+
 varVolt = 4.1339 # среднее отклонение (ищем в excel)
 varProcess = 0.05 # скорость реакции на изменение (подбирается вручную)
 Pc = 0.0
@@ -84,11 +86,9 @@ def uptime():
     if u > 59 :
         m = u // 60
         s = u % 60
-        
         if m > 59 :
             h = m // 60
             m = m % 60
-                
             if h > 23 :
                 d = h // 24
                 h = h % 24
