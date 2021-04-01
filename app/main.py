@@ -93,13 +93,13 @@ def uptime():
                 d = h // 24
                 h = h % 24
                         
-    if len(str(m) == 1 :
+    if len(str(m)) == 1 :
         m = "0" + str(m)
     
-    if len(str(s) == 1 :
+    if len(str(s)) == 1 :
         m = "0" + str(s)
         
-    if len(str(h) == 1 :
+    if len(str(h)) == 1 :
         m = "0" + str(h)
         
     u = "Uptime: " + str(d) + "d, " + str(h) + ":" + str(m) + ":" + str(s)
