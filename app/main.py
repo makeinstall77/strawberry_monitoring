@@ -156,6 +156,29 @@ def reboot(request):
 def version(request):
     server.send(ver)
 
+def relay1_on():
+    relay1.off()
+    
+def relay1_off():
+    relay1.on()
+    
+def relay2_on():
+    relay2.off()
+    
+def relay2_off():
+    relay2.on()
+    
+def relay3_on():
+    relay3.off()
+    
+def relay3_off():
+    relay3.on()
+    
+def relay4_on():
+    relay4.off()
+    
+def relay4_off():
+    relay4.on()
 
 def root(req):
     html = '''<!DOCTYPE html>
