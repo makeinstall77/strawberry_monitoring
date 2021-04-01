@@ -32,6 +32,8 @@ relay3.on()
 relay4.on()
 
 blueled = Pin(2, Pin.OUT)
+blueled.on()
+
 adc = machine.ADC(0)
 m_vin = Pin(5, Pin.OUT)
 m_vin.off()
@@ -267,4 +269,5 @@ server.add_route("/relay4_off", relay4_off)
 print ("starting http server")
 ''' start server '''
 server.start()
+
 blueled.off()
