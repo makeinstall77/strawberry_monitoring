@@ -6,6 +6,7 @@ import uos, machine
 import gc
 import senko
 
+print("start boot")
 OTA = senko.Senko(
   user="makeinstall77", # Required
   repo="strawberry_monitoring", # Required
@@ -17,3 +18,4 @@ OTA = senko.Senko(
 #import webrepl
 #webrepl.start()
 gc.collect()
+print("success boot")
