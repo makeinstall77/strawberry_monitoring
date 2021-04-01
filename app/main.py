@@ -82,22 +82,26 @@ def uptime():
 def relay_state(n):
     if n == 1:
         if relay1.value() == 1:
-            rez = "off"
+            rez = """off</p>
+        <p><a href="/relay1_on"><button class="button">ON</button></a></p>"""
         elif relay1.value() == 0:
             rez = "on"
     elif n == 2:
         if relay2.value() == 1:
-            rez = "off"
+            rez = """off</p>
+        <p><a href="/relay2_on"><button class="button">ON</button></a></p>"""
         elif relay2.value() == 0:
             rez = "on"
     elif n == 3:
         if relay3.value() == 1:
-            rez = "off"
+            rez = """off</p>
+        <p><a href="/relay3_on"><button class="button">ON</button></a></p>"""
         elif relay3.value() == 0:
             rez = "on"
     elif n == 4:
         if relay4.value() == 1:
-            rez = "off"
+            rez = """off</p>
+        <p><a href="/relay4_on"><button class="button">ON</button></a></p>"""
         elif relay4.value() == 0:
             rez = "on"
     return rez
