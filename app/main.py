@@ -9,7 +9,7 @@ from config import *
 from machine import Pin
 from micropyserver import MicroPyServer
 
-ver = "version: 0.544"
+ver = "version: 0.545"
 print (ver)
 
 html = '''<!DOCTYPE html>
