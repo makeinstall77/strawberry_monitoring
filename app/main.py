@@ -53,7 +53,7 @@ print('IP by DHCP:', wlan.ifconfig()[0])
 
 blueled.off()
 
-sleep(3)
+time.sleep(3)
 
 try:
     # if OTA.fetch():
@@ -82,6 +82,7 @@ def uptime():
     
 def relay_state(n):
     if n == 1:
+        print(relay1.value())
         return relay1.value()
     elif n == 2:
         return relay2.value()
