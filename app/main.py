@@ -117,8 +117,8 @@ def reboot(request):
     machine.reset()
     
 def version(request):
-    server.send("HTTP/1.0 200 OK\r\n")
-    server.send("Content-type: text/html")
+    # server.send("HTTP/1.0 200 OK\r\n")
+    # server.send("Content-type: text/html")
     server.send(ver)
     server.send("Connection: close")
 
