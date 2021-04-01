@@ -11,7 +11,7 @@ from micropyserver import MicroPyServer
 
 start = utime.time()
 
-ver = "version: 0.545"
+ver = "version: 0.546"
 print (ver)
 
 def uptime():
@@ -52,11 +52,11 @@ html = '''<!DOCTYPE html>
  <p>%s</p>
  <p>%s</p>
  <p><a href="/reboot"><button class="button">reboot</button></a></p>
- <p>GPIO 26 - State</p>
+ <p>Relay 1 - State</p>
  <p><a href="/26/on"><button class="button">ON</button></a></p>
  <p><a href="/26/off"><button class="button
 button2">OFF</button></a></p>
- <p>GPIO 27 - State</p>
+ <p>Relay 1 - State</p>
  <p><a href="/27/on"><button class="button">ON</button></a></p>
  <p><a href="/27/off"><button class="button
 button2">OFF</button></a></p>
@@ -74,10 +74,13 @@ OTA = senko.Senko(
 # ds_pin = machine.Pin(4)
 # ds_sensor = ds18x20.DS18X20(onewire.OneWire(ds_pin))
 
+relay1 = Pin(2, Pin.OUT)
+
 blueled = Pin(2, Pin.OUT)
 adc = machine.ADC(0)
 m_vin = Pin(5, Pin.OUT)
 m_vin.off()
+
 wlan_id = ssid
 wlan_pass = password
 wlan = network.WLAN(network.STA_IF)
@@ -169,7 +172,6 @@ def version(request):
 
 def root(req):
     server.send(html)
-
 
 ''' add request handler '''
 server.add_route("/data", show_data)
