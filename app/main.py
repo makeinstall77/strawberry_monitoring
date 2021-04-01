@@ -193,6 +193,8 @@ button2">OFF</button></a></p>
 </html>''' % (ver, uptime(), relay_state(1), relay_state(2))
     server.send(html)
 
+
+
 ''' add request handler '''
 server.add_route("/data", show_data)
 server.add_route("/moisture", show_moisture)
