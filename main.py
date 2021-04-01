@@ -9,15 +9,20 @@ from config import *
 from machine import Pin
 from micropyserver import MicroPyServer
 
-print ("version 0.1")
+print ("version 0.2")
 
 OTA = senko.Senko(
   user="makeinstall77", # Required
   repo="strawberry_monitoring", # Required
   branch="main", # Optional: Defaults to "master"
-  working_dir="app", # Optional: Defaults to "app"
+  working_dir=".", # Optional: Defaults to "app"
   files = ["boot.py", "main.py"]
 )
+
+if OTA.fetch():
+    print("A newer version is available!")
+else:
+    print("Up to date!")
 
 # ds_pin = machine.Pin(4)
 # ds_sensor = ds18x20.DS18X20(onewire.OneWire(ds_pin))
