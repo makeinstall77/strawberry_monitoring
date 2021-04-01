@@ -7,13 +7,7 @@ import gc
 import senko
 
 print("start boot")
-OTA = senko.Senko(
-  user="makeinstall77", # Required
-  repo="strawberry_monitoring", # Required
-  branch="main", # Optional: Defaults to "master"
-  working_dir="app", # Optional: Defaults to "app"
-  files = ["boot.py", "main.py"]
-)
+
 
 #import webrepl
 #webrepl.start()

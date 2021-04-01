@@ -9,10 +9,14 @@ from config import *
 from machine import Pin
 from micropyserver import MicroPyServer
 
+print ("version 0.1")
+
 OTA = senko.Senko(
-    user = "makeinstall77",
-    repo = "strawberry_monitoring",
-    files = ["boot.py", "main.py"]
+  user="makeinstall77", # Required
+  repo="strawberry_monitoring", # Required
+  branch="main", # Optional: Defaults to "master"
+  working_dir="app", # Optional: Defaults to "app"
+  files = ["boot.py", "main.py"]
 )
 
 # ds_pin = machine.Pin(4)
