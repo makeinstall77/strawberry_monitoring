@@ -4,7 +4,7 @@ import network
 import time
 import onewire
 import senko
-import config
+from config import ssid, password
 #import ds18x20
 from machine import Pin
 from micropyserver import MicroPyServer
