@@ -80,7 +80,6 @@ Xe = 0.0
 
 def uptime():
     u = utime.time() - int(start)
-    u = str(utime.timedelta(seconds=u))
     u = "Uptime: " + u
     return u
     
