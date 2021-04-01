@@ -111,6 +111,8 @@ print('IP by DHCP:', wlan.ifconfig()[0])
 
 blueled.off()
 
+sleep(3)
+
 try:
     # if OTA.fetch():
         # print("A newer version is available!")
