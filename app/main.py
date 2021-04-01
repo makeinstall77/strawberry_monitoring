@@ -9,7 +9,7 @@ from config import *
 from machine import Pin
 from micropyserver import MicroPyServer
 
-print ("version 0.54")
+print ("version 0.541")
 
 OTA = senko.Senko(
   user="makeinstall77", # Required
@@ -112,7 +112,7 @@ def reboot(request):
     server.send("Content-type:text/html")
     server.send("reboot")
     server.send("Connection: close")
-    time.sleep(1)
+    time.sleep(3)
     machine.reset()
 
 ''' add request handler '''
