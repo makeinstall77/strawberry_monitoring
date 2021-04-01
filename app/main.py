@@ -9,7 +9,7 @@ from config import *
 from machine import Pin
 from micropyserver import MicroPyServer
 
-ver = "version: 0.543"
+ver = "version: 0.544"
 print (ver)
 
 OTA = senko.Senko(
