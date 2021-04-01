@@ -5,9 +5,7 @@ import uos, machine
 #uos.dupterm(None, 1) # disable REPL on UART(0)
 import gc
 import senko
-
-print("start boot")
-
+print("booting")
 
 #import webrepl
 #webrepl.start()
