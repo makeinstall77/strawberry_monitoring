@@ -9,7 +9,7 @@ from config import *
 from machine import Pin
 from micropyserver import MicroPyServer
 
-print ("version 0.51")
+print ("version 0.52")
 
 OTA = senko.Senko(
   user="makeinstall77", # Required
