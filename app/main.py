@@ -8,11 +8,14 @@ from config import *
 from machine import Pin
 from micropyserver import MicroPyServer
 
+start = utime.time()
+
 ver = "version: 0.545"
 print (ver)
 
-uptime = ''
-
+def uptime:
+    u = utime.time() - start
+    return u
 html = '''<!DOCTYPE html>
 <html>
 <head>
