@@ -85,13 +85,13 @@ def uptime():
         m = u // 60
         s = u % 60
         
-            if m > 59 :
-                h = m // 60
-                m = m % 60
+        if m > 59 :
+            h = m // 60
+            m = m % 60
                 
-                    if h > 23 :
-                        d = h // 24
-                        h = h % 24
+            if h > 23 :
+                d = h // 24
+                h = h % 24
                         
     if len(str(m) == 1 :
         m = "0" + str(m)
