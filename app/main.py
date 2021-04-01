@@ -182,7 +182,7 @@ def relay4_on():
 def relay4_off():
     relay4.on()
 
-def root(req):
+def root(request):
     html = '''<!DOCTYPE html>
 <html>
 <head>
