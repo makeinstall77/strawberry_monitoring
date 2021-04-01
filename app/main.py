@@ -230,6 +230,7 @@ def relay4_off(request):
 def root(request):
     d = dht.DHT11(Pin(14))
     d.measure()
+    hum = d.humidity() + 8
     
     html = '''<!DOCTYPE html>
 <html>
@@ -273,7 +274,7 @@ def root(request):
  <p>Temperature: %s</p>
  <p>Humidity: %s</p>
 </body>
-</html>''' % (ver, uptime(), str(relay_state(1)), str(relay_state(2)), str(relay_state(3)), str(relay_state(4)), d.temperature(), d.temperature(), d.humidity() + 8)
+</html>''' % (ver, uptime(), str(relay_state(1)), str(relay_state(2)), str(relay_state(3)), str(relay_state(4)), str(d.temperature()), str(hum))
     server.send(html)
 
 
