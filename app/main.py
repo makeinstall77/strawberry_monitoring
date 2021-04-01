@@ -53,17 +53,15 @@ print('IP by DHCP:', wlan.ifconfig()[0])
 
 time.sleep(3)
 
-try:
-    # if OTA.fetch():
-        # print("A newer version is available!")
-    if OTA.update():
-        print("Updated to the latest version! Rebooting...")
-        machine.reset()
-    else:
-        print("Up to date!")
-except Exception as e:
-    print (e)
-    pass
+# try:
+    # if OTA.update():
+        # print("Updated to the latest version! Rebooting...")
+        # machine.reset()
+    # else:
+        # print("Up to date!")
+# except Exception as e:
+    # print (e)
+    # pass
 
 print("OTA end")
 
@@ -92,15 +90,17 @@ def uptime():
             if h > 23 :
                 d = h // 24
                 h = h % 24
-                        
+    else:
+        s = u
+    
     if len(str(m)) == 1 :
         m = "0" + str(m)
     
     if len(str(s)) == 1 :
-        m = "0" + str(s)
+        s = "0" + str(s)
         
     if len(str(h)) == 1 :
-        m = "0" + str(h)
+        h = "0" + str(h)
         
     u = "Uptime: " + str(d) + "d, " + str(h) + ":" + str(m) + ":" + str(s)
     return u
