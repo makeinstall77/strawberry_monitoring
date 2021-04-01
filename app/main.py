@@ -21,7 +21,7 @@ def uptime():
 html = '''<!DOCTYPE html>
 <html>
 <head>
- <title>ESP32 Web Server</title>
+ <title>Strawberry monitoring</title>
  <meta name="viewport" content="width=device-width, initialscale=1">
  <link rel="icon" href="data:,">
   <style>
