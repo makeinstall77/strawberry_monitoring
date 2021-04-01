@@ -13,7 +13,6 @@ start = utime.time()
 
 ver = "version: 0.549"
 print (ver)
-       
 
 OTA = senko.Senko(
   user="makeinstall77", # Required
