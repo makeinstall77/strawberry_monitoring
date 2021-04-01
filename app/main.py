@@ -9,7 +9,7 @@ from config import *
 from machine import Pin
 from micropyserver import MicroPyServer
 
-print ("version 0.53")
+print ("version 0.54")
 
 OTA = senko.Senko(
   user="makeinstall77", # Required
@@ -110,8 +110,9 @@ def show_moisture(request):
 def reboot(request):
     server.send("HTTP/1.1 200 OK\r\n")
     server.send("Content-type:text/html")
-    server.send("reboot");
-    server.send("Connection: close");
+    server.send("reboot")
+    server.send("Connection: close")
+    time.sleep(1)
     machine.reset()
 
 ''' add request handler '''
