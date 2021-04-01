@@ -11,7 +11,7 @@ from micropyserver import MicroPyServer
 
 start = utime.time()
 
-ver = "version: 0.546"
+ver = "version: 0.547"
 print (ver)
 
 def uptime():
