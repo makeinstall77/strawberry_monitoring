@@ -168,7 +168,9 @@ def show_moisture(request):
     blueled.off()
     
 def reboot(request):
-    server.send("reboot")
+    server.send("""<html><head>
+  <meta http-equiv="Refresh" content="0; URL=https://example.com/">
+</head></html>""")
     machine.reset()
     
 def version(request):
