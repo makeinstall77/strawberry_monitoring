@@ -61,7 +61,7 @@ button2">OFF</button></a></p>
  <p><a href="/27/off"><button class="button
 button2">OFF</button></a></p>
 </body>
-</html>''' % ver, uptime()
+</html>''' % (ver, uptime())
 
 OTA = senko.Senko(
   user="makeinstall77", # Required
