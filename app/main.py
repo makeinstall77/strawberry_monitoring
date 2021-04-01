@@ -13,7 +13,7 @@ start = utime.time()
 ver = "version: 0.545"
 print (ver)
 
-def uptime:
+def uptime():
     u = utime.time() - start
     return u
     
