@@ -9,7 +9,7 @@ from config import *
 from machine import Pin
 from micropyserver import MicroPyServer
 
-ver = "version: 0.542"
+ver = "version: 0.543"
 print (ver)
 
 OTA = senko.Senko(
@@ -122,11 +122,29 @@ def version(request):
     server.send(ver)
     server.send("Connection: close")
 
+def root(req):
+    server.send('''<!DOCTYPE html>
+<html>
+<head>
+<title>ESP32 Web Server</title>
+</head>
+<body>
+ <h1>ESP32 Web Server</h1>
+ <p>GPIO 26 - State</p>
+ <p><a href="/26/on"><button>ON</button></a></p>
+ <p><a href="/26/off"><button>OFF</button></a></p>
+ <p>GPIO 27 - State</p>
+ <p><a href="/27/on"><button>ON</button></a></p>
+ <p><a href="/27/off"><button>OFF</button></a></p>
+</body>
+</html>''')
+
 ''' add request handler '''
 server.add_route("/data", show_data)
 server.add_route("/moisture", show_moisture)
 server.add_route("/reboot", reboot)
 server.add_route("/version", version)
+server.add_route("/", root)
 
 print ("starting http server")
 ''' start server '''
