@@ -5,6 +5,7 @@ import time
 import onewire
 import senko
 import utime
+import datatime
 from config import *
 from machine import Pin
 from micropyserver import MicroPyServer
@@ -79,6 +80,8 @@ Xe = 0.0
 
 def uptime():
     u = utime.time() - int(start)
+    u = str(datetime.timedelta(seconds=u))
+    u = "Uptime: " + u
     return u
     
 def relay_state(n):
