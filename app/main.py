@@ -18,6 +18,16 @@ def uptime():
     u = utime.time() - int(start)
     return u
     
+def relay_state(n):
+    if n == 1:
+        return relay1.value()
+    elif n == 2:
+        return relay2.value()
+    elif n == 3:
+        return relay3.value()
+    elif n == 4:
+        return relay4.value()
+        
 html = '''<!DOCTYPE html>
 <html>
 <head>
@@ -47,21 +57,21 @@ html = '''<!DOCTYPE html>
   </style>
 </head>
 <body>
- <h1>ESP32 Web Server</h1>
+ <h1>Strawberry monitoring</h1>
  <p><h2>System:<h2></p>
  <p>%s</p>
  <p>%s</p>
  <p><a href="/reboot"><button class="button">reboot</button></a></p>
- <p>Relay 1 - State</p>
- <p><a href="/26/on"><button class="button">ON</button></a></p>
- <p><a href="/26/off"><button class="button
+ <p>Relay 1 - State %</p>
+ <p><a href="/relay1/on"><button class="button">ON</button></a></p>
+ <p><a href="/relay1/off"><button class="button
 button2">OFF</button></a></p>
- <p>Relay 1 - State</p>
- <p><a href="/27/on"><button class="button">ON</button></a></p>
- <p><a href="/27/off"><button class="button
+ <p>Relay 2 - State %</p>
+ <p><a href="/relay2/on"><button class="button">ON</button></a></p>
+ <p><a href="/relay2/off"><button class="button
 button2">OFF</button></a></p>
 </body>
-</html>''' % (ver, uptime())
+</html>''' % (ver, uptime(), relay_state(1), relay_state(2))
 
 OTA = senko.Senko(
   user="makeinstall77", # Required
