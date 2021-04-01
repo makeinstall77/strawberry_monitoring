@@ -32,6 +32,7 @@ if wlan.isconnected() == False:
     wlan.connect(wlan_id, wlan_pass)
     while wlan.isconnected() == False:
         time.sleep(1)
+        
 print('Device IP:', wlan.ifconfig()[0])
 
 blueled.off()
@@ -97,5 +98,6 @@ def show_moisture(request):
 server.add_route("/data", show_data)
 server.add_route("/moisture", show_moisture)
 
+print ("starting http server")
 ''' start server '''
 server.start()
