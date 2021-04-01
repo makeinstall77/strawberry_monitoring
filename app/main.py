@@ -37,7 +37,7 @@ if wlan.isconnected() == False:
     while wlan.isconnected() == False:
         time.sleep(1)
         
-print('Device IP:', wlan.ifconfig()[0])
+print('IP by DHCP:', wlan.ifconfig()[0])
 
 blueled.off()
 
