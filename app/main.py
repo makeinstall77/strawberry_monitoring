@@ -29,7 +29,7 @@ html = '''<!DOCTYPE html>
  <p><a href="/27/on"><button>ON</button></a></p>
  <p><a href="/27/off"><button>OFF</button></a></p>
 </body>
-</html>''' 
+</html>''' % ver
 
 OTA = senko.Senko(
   user="makeinstall77", # Required
@@ -137,7 +137,7 @@ def version(request):
 
 
 def root(req):
-    server.send(html, (ver,))
+    server.send(html)
 
 
 ''' add request handler '''
