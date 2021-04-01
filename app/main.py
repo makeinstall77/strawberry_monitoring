@@ -18,7 +18,7 @@ html = '''<!DOCTYPE html>
 </head>
 <body>
  <h1>ESP32 Web Server</h1>
- <p>system</p>
+ <p><h2>System:<h2></p>
  <p>%s</p>
  <p><a href="/reboot"><button>reboot</button></a></p>
  <p>GPIO 26 - State</p>
