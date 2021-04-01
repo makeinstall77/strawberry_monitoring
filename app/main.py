@@ -9,7 +9,7 @@ from config import *
 from machine import Pin
 from micropyserver import MicroPyServer
 
-print ("version 0.5")
+print ("version 0.51")
 
 OTA = senko.Senko(
   user="makeinstall77", # Required
@@ -19,10 +19,7 @@ OTA = senko.Senko(
   files = ["boot.py", "main.py"]
 )
 
-if OTA.fetch():
-    print("A newer version is available!")
-else:
-    print("Up to date!")
+
 
 # ds_pin = machine.Pin(4)
 # ds_sensor = ds18x20.DS18X20(onewire.OneWire(ds_pin))
@@ -46,12 +43,17 @@ print('Device IP:', wlan.ifconfig()[0])
 
 blueled.off()
 
-
-if OTA.update():
-    print("Updated to the latest version! Rebooting...")
-    machine.reset()
-else:
-    print ("not update")
+try:
+    if OTA.fetch():
+        print("A newer version is available!")
+        if OTA.update():
+            print("Updated to the latest version! Rebooting...")
+            machine.reset()
+    else:
+        print("Up to date!")
+except:
+    print ("error while checking new version")
+    pass
 
 varVolt = 4.1339 # среднее отклонение (ищем в excel)
 varProcess = 0.05 # скорость реакции на изменение (подбирается вручную)
