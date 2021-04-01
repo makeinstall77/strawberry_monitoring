@@ -9,8 +9,8 @@ from config import *
 from machine import Pin
 from micropyserver import MicroPyServer
 
-version = "0.541"
-print (version)
+ver = "version: 0.542"
+print (ver)
 
 OTA = senko.Senko(
   user="makeinstall77", # Required
@@ -43,11 +43,11 @@ print('IP by DHCP:', wlan.ifconfig()[0])
 blueled.off()
 
 try:
-    if OTA.fetch():
-        print("A newer version is available!")
-        if OTA.update():
-            print("Updated to the latest version! Rebooting...")
-            machine.reset()
+    # if OTA.fetch():
+        # print("A newer version is available!")
+    if OTA.update():
+        print("Updated to the latest version! Rebooting...")
+        machine.reset()
     else:
         print("Up to date!")
 except:
@@ -119,7 +119,7 @@ def reboot(request):
 def version(request):
     server.send("HTTP/1.0 200 OK\r\n")
     server.send("Content-type: text/html")
-    server.send(version)
+    server.send(ver)
     server.send("Connection: close")
 
 ''' add request handler '''
