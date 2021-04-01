@@ -218,15 +218,19 @@ def root(request):
  <p>%s</p>
  <p><a href="/reboot"><button class="button">reboot</button></a></p>
  <p>Relay 1 - State %s</p>
- <p><a href="/relay1/on"><button class="button">ON</button></a></p>
- <p><a href="/relay1/off"><button class="button
-button2">OFF</button></a></p>
+ <p><a href="/relay1_on"><button class="button">ON</button></a></p>
+ <p><a href="/relay1_off"><button class="button button2">OFF</button></a></p>
  <p>Relay 2 - State %s</p>
- <p><a href="/relay2/on"><button class="button">ON</button></a></p>
- <p><a href="/relay2/off"><button class="button
-button2">OFF</button></a></p>
+ <p><a href="/relay2_on"><button class="button">ON</button></a></p>
+ <p><a href="/relay2_off"><button class="button button2">OFF</button></a></p>
+ <p>Relay 3 - State %s</p>
+ <p><a href="/relay3_on"><button class="button">ON</button></a></p>
+ <p><a href="/relay3_off"><button class="button button2">OFF</button></a></p>
+ <p>Relay 4 - State %s</p>
+ <p><a href="/relay4_on"><button class="button">ON</button></a></p>
+ <p><a href="/relay4_off"><button class="button button2">OFF</button></a></p>
 </body>
-</html>''' % (ver, uptime(), str(relay_state(1)), str(relay_state(2)))
+</html>''' % (ver, uptime(), str(relay_state(1)), str(relay_state(2)), str(relay_state(3)), str(relay_state(4)))
     server.send(html)
 
 
@@ -238,14 +242,14 @@ server.add_route("/reboot", reboot)
 server.add_route("/version", version)
 server.add_route("/version", version)
 server.add_route("/", root)
-server.add_route("/relay1/on", relay1_on)
-server.add_route("/relay1/off", relay1_off)
-server.add_route("/relay2/on", relay1_on)
-server.add_route("/relay2/off", relay1_off)
-server.add_route("/relay3/on", relay1_on)
-server.add_route("/relay3/off", relay1_off)
-server.add_route("/relay4/on", relay1_on)
-server.add_route("/relay4/off", relay1_off)
+server.add_route("/relay1_on", relay1_on)
+server.add_route("/relay1_off", relay1_off)
+server.add_route("/relay2_on", relay1_on)
+server.add_route("/relay2_off", relay1_off)
+server.add_route("/relay3_on", relay1_on)
+server.add_route("/relay3_off", relay1_off)
+server.add_route("/relay4_on", relay1_on)
+server.add_route("/relay4_off", relay1_off)
 
 print ("starting http server")
 ''' start server '''
