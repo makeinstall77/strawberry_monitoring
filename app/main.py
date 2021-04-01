@@ -14,7 +14,17 @@ print (ver)
 html = '''<!DOCTYPE html>
 <html>
 <head>
-<title>ESP32 Web Server</title>
+ <title>ESP32 Web Server</title>
+ <meta name="viewport" content="width=device-width, initialscale=1">
+ <link rel="icon" href="data:,">
+ <style>
+ html {
+ font-family: Helvetica;
+ display: inline-block;
+ margin: 0px auto;
+ text-align: center;
+ }
+ </style>
 </head>
 <body>
  <h1>ESP32 Web Server</h1>
@@ -22,11 +32,13 @@ html = '''<!DOCTYPE html>
  <p>%s</p>
  <p><a href="/reboot"><button>reboot</button></a></p>
  <p>GPIO 26 - State</p>
- <p><a href="/26/on"><button>ON</button></a></p>
- <p><a href="/26/off"><button>OFF</button></a></p>
+ <p><a href="/26/on"><button class="button">ON</button></a></p>
+ <p><a href="/26/off"><button class="button
+button2">OFF</button></a></p>
  <p>GPIO 27 - State</p>
- <p><a href="/27/on"><button>ON</button></a></p>
- <p><a href="/27/off"><button>OFF</button></a></p>
+ <p><a href="/27/on"><button class="button">ON</button></a></p>
+ <p><a href="/27/off"><button class="button
+button2">OFF</button></a></p>
 </body>
 </html>''' % ver
 
