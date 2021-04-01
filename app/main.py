@@ -76,7 +76,7 @@ Xe = 0.0
 
 def uptime():
     u = utime.time() - int(start)
-    u = "Uptime: " + u
+    u = "Uptime: " + str(u)
     return u
     
 def relay_state(n):
