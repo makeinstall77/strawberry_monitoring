@@ -37,9 +37,12 @@ print('Device IP:', wlan.ifconfig()[0])
 
 blueled.off()
 
+
 if OTA.update():
     print("Updated to the latest version! Rebooting...")
     machine.reset()
+else:
+    print ("not update")
 
 varVolt = 4.1339 # среднее отклонение (ищем в excel)
 varProcess = 0.05 # скорость реакции на изменение (подбирается вручную)
