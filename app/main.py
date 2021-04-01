@@ -11,6 +11,8 @@ from micropyserver import MicroPyServer
 ver = "version: 0.545"
 print (ver)
 
+uptime = ''
+
 html = '''<!DOCTYPE html>
 <html>
 <head>
@@ -43,6 +45,7 @@ html = '''<!DOCTYPE html>
  <h1>ESP32 Web Server</h1>
  <p><h2>System:<h2></p>
  <p>%s</p>
+ <p>%s</p>
  <p><a href="/reboot"><button>reboot</button></a></p>
  <p>GPIO 26 - State</p>
  <p><a href="/26/on"><button class="button">ON</button></a></p>
@@ -53,7 +56,7 @@ button2">OFF</button></a></p>
  <p><a href="/27/off"><button class="button
 button2">OFF</button></a></p>
 </body>
-</html>''' % ver
+</html>''' % ver, uptime
 
 OTA = senko.Senko(
   user="makeinstall77", # Required
