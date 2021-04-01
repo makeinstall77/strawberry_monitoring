@@ -71,10 +71,10 @@ OTA = senko.Senko(
   files = ["boot.py", "main.py"]
 )
 
-# ds_pin = machine.Pin(4)
-# ds_sensor = ds18x20.DS18X20(onewire.OneWire(ds_pin))
-
-relay1 = Pin(2, Pin.OUT)
+relay1 = Pin(0, Pin.OUT)
+relay2 = Pin(2, Pin.OUT)
+relay3 = Pin(2, Pin.OUT)
+relay4 = Pin(4, Pin.OUT)
 
 blueled = Pin(2, Pin.OUT)
 adc = machine.ADC(0)
