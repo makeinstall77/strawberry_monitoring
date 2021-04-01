@@ -82,28 +82,32 @@ def uptime():
 def relay_state(n):
     if n == 1:
         if relay1.value() == 1:
-            rez = """off</p>
+            rez = """<p>Relay 1 - State off</p>
         <p><a href="/relay1_on"><button class="button">ON</button></a></p>"""
         elif relay1.value() == 0:
-            rez = "on"
+            rez = """<p>Relay 1 - State on</p>
+        <p><a href="/relay1_off"><button class="button button2">OFF</button></a></p>"""
     elif n == 2:
         if relay2.value() == 1:
-            rez = """off</p>
+            rez = """<p>Relay 2 - State off</p>
         <p><a href="/relay2_on"><button class="button">ON</button></a></p>"""
         elif relay2.value() == 0:
-            rez = "on"
+            rez = """<p>Relay 2 - State on</p>
+        <p><a href="/relay2_off"><button class="button button2">OFF</button></a></p>"""
     elif n == 3:
         if relay3.value() == 1:
-            rez = """off</p>
+            rez = """<p>Relay 3 - State off</p>
         <p><a href="/relay3_on"><button class="button">ON</button></a></p>"""
         elif relay3.value() == 0:
-            rez = "on"
+            rez = """<p>Relay 3 - State on</p>
+        <p><a href="/relay3_off"><button class="button button2">OFF</button></a></p>"""
     elif n == 4:
         if relay4.value() == 1:
-            rez = """off</p>
+            rez = """<p>Relay 4 - State off</p>
         <p><a href="/relay4_on"><button class="button">ON</button></a></p>"""
         elif relay4.value() == 0:
-            rez = "on"
+            rez = """<p>Relay 4 - State on</p>
+        <p><a href="/relay4_off"><button class="button button2">OFF</button></a></p>"""
     return rez
 
 def kalman(var):
@@ -219,18 +223,10 @@ def root(request):
  <p>%s</p>
  <p>%s</p>
  <p><a href="/reboot"><button class="button">reboot</button></a></p>
- <p>Relay 1 - State %s</p>
- <p><a href="/relay1_on"><button class="button">ON</button></a></p>
- <p><a href="/relay1_off"><button class="button button2">OFF</button></a></p>
- <p>Relay 2 - State %s</p>
- <p><a href="/relay2_on"><button class="button">ON</button></a></p>
- <p><a href="/relay2_off"><button class="button button2">OFF</button></a></p>
- <p>Relay 3 - State %s</p>
- <p><a href="/relay3_on"><button class="button">ON</button></a></p>
- <p><a href="/relay3_off"><button class="button button2">OFF</button></a></p>
- <p>Relay 4 - State %s</p>
- <p><a href="/relay4_on"><button class="button">ON</button></a></p>
- <p><a href="/relay4_off"><button class="button button2">OFF</button></a></p>
+ %s
+ %s
+ %s
+ %s
 </body>
 </html>''' % (ver, uptime(), str(relay_state(1)), str(relay_state(2)), str(relay_state(3)), str(relay_state(4)))
     server.send(html)
