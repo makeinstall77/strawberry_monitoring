@@ -108,32 +108,24 @@ def uptime():
 def relay_state(n):
     if n == 1:
         if relay1.value() == 1:
-            rez = """<p>Relay 1</p>
-        <p><a href="/relay1_on"><button class="button button2">OFF</button></a></p>"""
+            rez = """<p><a href="/relay1_on"><button class="button button2">Relay 1 OFF</button></a></p>"""
         elif relay1.value() == 0:
-            rez = """<p>Relay 1</p>
-        <p><a href="/relay1_off"><button class="button">ON</button></a></p>"""
+            rez = """<p><a href="/relay1_off"><button class="button">Relay 1 ON</button></a></p>"""
     elif n == 2:
         if relay2.value() == 1:
-            rez = """<p>Relay 2</p>
-        <p><a href="/relay2_on"><button class="button button2">OFF</button></a></p>"""
+            rez = """<p><a href="/relay2_on"><button class="button button2">Relay 2 OFF</button></a></p>"""
         elif relay2.value() == 0:
-            rez = """<p>Relay 2</p>
-        <p><a href="/relay2_off"><button class="button">ON</button></a></p>"""
+            rez = """<p><a href="/relay2_off"><button class="button">Relay 2 ON</button></a></p>"""
     elif n == 3:
         if relay3.value() == 1:
-            rez = """<p>Relay 3</p>
-        <p><a href="/relay3_on"><button class="button button2">OFF</button></a></p>"""
+            rez = """<p><a href="/relay3_on"><button class="button button2">Relay 3 OFF</button></a></p>"""
         elif relay3.value() == 0:
-            rez = """<p>Relay 3</p>
-        <p><a href="/relay3_off"><button class="button">ON</button></a></p>"""
+            rez = """<p><a href="/relay3_off"><button class="button">Relay 3 ON</button></a></p>"""
     elif n == 4:
         if relay4.value() == 1:
-            rez = """<p>Relay 4</p>
-        <p><a href="/relay4_on"><button class="button button2">OFF</button></a></p>"""
+            rez = """<p><a href="/relay4_on"><button class="button button2">Relay 4 OFF</button></a></p>"""
         elif relay4.value() == 0:
-            rez = """<p>Relay 4</p>
-        <p><a href="/relay4_off"><button class="button">ON</button></a></p>"""
+            rez = """<p><a href="/relay4_off"><button class="button">Relay 4 ON</button></a></p>"""
     return rez
 
 def kalman(var):
