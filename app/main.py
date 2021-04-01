@@ -15,7 +15,7 @@ ver = "version: 0.546"
 print (ver)
 
 def uptime():
-    u = utime.time() - start
+    u = utime.time() - int(start)
     return u
     
 html = '''<!DOCTYPE html>
