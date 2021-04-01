@@ -9,7 +9,8 @@ from config import *
 from machine import Pin
 from micropyserver import MicroPyServer
 
-print ("version 0.541")
+version = "0.541"
+print (version)
 
 OTA = senko.Senko(
   user="makeinstall77", # Required
@@ -108,17 +109,24 @@ def show_moisture(request):
     blueled.off()
     
 def reboot(request):
-    server.send("HTTP/1.1 200 OK\r\n")
-    server.send("Content-type:text/html")
+    server.send("HTTP/1.0 200 OK\r\n")
+    server.send("Content-type: text/html")
     server.send("reboot")
     server.send("Connection: close")
     time.sleep(3)
     machine.reset()
+    
+def version(request):
+    server.send("HTTP/1.0 200 OK\r\n")
+    server.send("Content-type: text/html")
+    server.send(version)
+    server.send("Connection: close")
 
 ''' add request handler '''
 server.add_route("/data", show_data)
 server.add_route("/moisture", show_moisture)
 server.add_route("/reboot", reboot)
+server.add_route("/version", version)
 
 print ("starting http server")
 ''' start server '''
