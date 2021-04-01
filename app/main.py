@@ -134,6 +134,7 @@ def root(req):
 </body>
 </html>''')
 
+
 ''' add request handler '''
 server.add_route("/data", show_data)
 server.add_route("/moisture", show_moisture)
