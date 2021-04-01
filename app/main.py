@@ -49,7 +49,7 @@ if wlan.isconnected() == False:
         
 print('IP by DHCP:', wlan.ifconfig()[0])
 
-blueled.off()
+
 
 time.sleep(3)
 
@@ -267,3 +267,4 @@ server.add_route("/relay4_off", relay4_off)
 print ("starting http server")
 ''' start server '''
 server.start()
+blueled.off()
