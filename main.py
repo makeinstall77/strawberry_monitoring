@@ -3,9 +3,17 @@ import dht
 import network
 import time
 import onewire
+import senko
+import config
 #import ds18x20
 from machine import Pin
 from micropyserver import MicroPyServer
+
+OTA = senko.Senko(
+    user = "makeinstall77",
+    repo = "strawberry_monitoring",
+    files = ["boot.py", "main.py"]
+)
 
 # ds_pin = machine.Pin(4)
 # ds_sensor = ds18x20.DS18X20(onewire.OneWire(ds_pin))
@@ -14,8 +22,8 @@ blueled = Pin(2, Pin.OUT)
 adc = machine.ADC(0)
 m_vin = Pin(5, Pin.OUT)
 m_vin.off()
-wlan_id = "random"
-wlan_pass = "500pxFORall"
+wlan_id = ssid
+wlan_pass = password
 wlan = network.WLAN(network.STA_IF)
 wlan.active(True)
 server = MicroPyServer()
@@ -27,6 +35,10 @@ if wlan.isconnected() == False:
 print('Device IP:', wlan.ifconfig()[0])
 
 blueled.off()
+
+if OTA.update():
+    print("Updated to the latest version! Rebooting...")
+    machine.reset()
 
 varVolt = 4.1339 # среднее отклонение (ищем в excel)
 varProcess = 0.05 # скорость реакции на изменение (подбирается вручную)
