@@ -6,6 +6,7 @@ import onewire
 import senko
 import utime
 import datatime
+import sys, os
 from config import *
 from machine import Pin
 from micropyserver import MicroPyServer
