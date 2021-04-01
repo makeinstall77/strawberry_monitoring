@@ -128,7 +128,6 @@ def show_moisture(request):
     
 def reboot(request):
     server.send("reboot")
-    time.sleep(3)
     machine.reset()
     
 def version(request):
