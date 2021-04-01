@@ -166,27 +166,43 @@ def version(request):
 
 def relay1_on(request):
     relay1.off()
+    server.send("""HTTP/1.1 302 Found\r\n
+Location: ./\r\n""")
     
 def relay1_off(request):
     relay1.on()
+    server.send("""HTTP/1.1 302 Found\r\n
+Location: ./\r\n""")
     
 def relay2_on(request):
     relay2.off()
+    server.send("""HTTP/1.1 302 Found\r\n
+Location: ./\r\n""")
     
 def relay2_off(request):
     relay2.on()
+    server.send("""HTTP/1.1 302 Found\r\n
+Location: ./\r\n""")
     
 def relay3_on(request):
     relay3.off()
+    server.send("""HTTP/1.1 302 Found\r\n
+Location: ./\r\n""")
     
 def relay3_off(request):
     relay3.on()
+    server.send("""HTTP/1.1 302 Found\r\n
+Location: ./\r\n""")
     
 def relay4_on(request):
     relay4.off()
+    server.send("""HTTP/1.1 302 Found\r\n
+Location: ./\r\n""")
     
 def relay4_off(request):
     relay4.on()
+    server.send("""HTTP/1.1 302 Found\r\n
+Location: ./\r\n""")
 
 def root(request):
     html = '''<!DOCTYPE html>
