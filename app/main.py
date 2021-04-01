@@ -109,18 +109,13 @@ def show_moisture(request):
     blueled.off()
     
 def reboot(request):
-    server.send("HTTP/1.0 200 OK\r\n")
-    server.send("Content-type: text/html")
     server.send("reboot")
-    server.send("Connection: close")
     time.sleep(3)
     machine.reset()
     
 def version(request):
-    # server.send("HTTP/1.0 200 OK\r\n")
-    # server.send("Content-type: text/html")
     server.send(ver)
-    server.send("Connection: close")
+
 
 def root(req):
     server.send('''<!DOCTYPE html>
