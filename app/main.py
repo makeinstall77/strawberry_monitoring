@@ -156,28 +156,28 @@ def reboot(request):
 def version(request):
     server.send(ver)
 
-def relay1_on():
+def relay1_on(request):
     relay1.off()
     
-def relay1_off():
+def relay1_off(request):
     relay1.on()
     
-def relay2_on():
+def relay2_on(request):
     relay2.off()
     
-def relay2_off():
+def relay2_off(request):
     relay2.on()
     
-def relay3_on():
+def relay3_on(request):
     relay3.off()
     
-def relay3_off():
+def relay3_off(request):
     relay3.on()
     
-def relay4_on():
+def relay4_on(request):
     relay4.off()
     
-def relay4_off():
+def relay4_off(request):
     relay4.on()
 
 def root(request):
