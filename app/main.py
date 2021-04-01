@@ -229,6 +229,7 @@ def root(request):
 <head>
  <title>Strawberry monitoring</title>
  <meta name="viewport" content="width=device-width, initialscale=1">
+ <meta http-equiv="refresh" content="30" />
  <link rel="icon" href="data:,">
   <style>
     html {
