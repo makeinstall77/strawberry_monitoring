@@ -13,65 +13,7 @@ start = utime.time()
 
 ver = "version: 0.549"
 print (ver)
-
-def uptime():
-    u = utime.time() - int(start)
-    return u
-    
-def relay_state(n):
-    if n == 1:
-        return relay1.value()
-    elif n == 2:
-        return relay2.value()
-    elif n == 3:
-        return relay3.value()
-    elif n == 4:
-        return relay4.value()
-        
-html = '''<!DOCTYPE html>
-<html>
-<head>
- <title>Strawberry monitoring</title>
- <meta name="viewport" content="width=device-width, initialscale=1">
- <link rel="icon" href="data:,">
-  <style>
-    html {
-      font-family: Helvetica;
-      display: inline-block;
-      margin: 0px auto;
-      text-align: center;
-    }
-    .button {
-      background-color: #4CAF50;
-      border: none;
-      color: white;
-      padding: 16px 40px;
-      text-decoration: none;
-      font-size: 30px;
-      margin: 2px;
-      cursor: pointer;
-    }
-    .button2 {
-      background-color: #555555;
-    }
-  </style>
-</head>
-<body>
- <h1>Strawberry monitoring</h1>
- <p><h2>System:<h2></p>
- <p>%s</p>
- <p>%s</p>
- <p><a href="/reboot"><button class="button">reboot</button></a></p>
- <p>Relay 1 - State %</p>
- <p><a href="/relay1/on"><button class="button">ON</button></a></p>
- <p><a href="/relay1/off"><button class="button
-button2">OFF</button></a></p>
- <p>Relay 2 - State %</p>
- <p><a href="/relay2/on"><button class="button">ON</button></a></p>
- <p><a href="/relay2/off"><button class="button
-button2">OFF</button></a></p>
-</body>
-</html>''' % (ver, uptime(), relay_state(1), relay_state(2))
+       
 
 OTA = senko.Senko(
   user="makeinstall77", # Required
@@ -134,6 +76,20 @@ Xp = 0.0
 Zp = 0.0
 Xe = 0.0
 
+def uptime():
+    u = utime.time() - int(start)
+    return u
+    
+def relay_state(n):
+    if n == 1:
+        return relay1.value()
+    elif n == 2:
+        return relay2.value()
+    elif n == 3:
+        return relay3.value()
+    elif n == 4:
+        return relay4.value()
+
 def kalman(var):
     global varVolt
     global varProcess
@@ -190,6 +146,50 @@ def version(request):
 
 
 def root(req):
+    html = '''<!DOCTYPE html>
+<html>
+<head>
+ <title>Strawberry monitoring</title>
+ <meta name="viewport" content="width=device-width, initialscale=1">
+ <link rel="icon" href="data:,">
+  <style>
+    html {
+      font-family: Helvetica;
+      display: inline-block;
+      margin: 0px auto;
+      text-align: center;
+    }
+    .button {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 16px 40px;
+      text-decoration: none;
+      font-size: 30px;
+      margin: 2px;
+      cursor: pointer;
+    }
+    .button2 {
+      background-color: #555555;
+    }
+  </style>
+</head>
+<body>
+ <h1>Strawberry monitoring</h1>
+ <p><h2>System:<h2></p>
+ <p>%s</p>
+ <p>%s</p>
+ <p><a href="/reboot"><button class="button">reboot</button></a></p>
+ <p>Relay 1 - State %</p>
+ <p><a href="/relay1/on"><button class="button">ON</button></a></p>
+ <p><a href="/relay1/off"><button class="button
+button2">OFF</button></a></p>
+ <p>Relay 2 - State %</p>
+ <p><a href="/relay2/on"><button class="button">ON</button></a></p>
+ <p><a href="/relay2/off"><button class="button
+button2">OFF</button></a></p>
+</body>
+</html>''' % (ver, uptime(), relay_state(1), relay_state(2))
     server.send(html)
 
 ''' add request handler '''
