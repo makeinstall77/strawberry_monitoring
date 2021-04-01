@@ -156,9 +156,8 @@ def show_moisture(request):
     blueled.off()
     
 def reboot(request):
-    server.send("""<html><head>
-  <meta http-equiv="Refresh" content="0; URL=https://example.com/">
-</head></html>""")
+    server.send("HTTP/1.1 302 Found\r\n")
+    server.send("Location: ./\r\n")
     machine.reset()
     
 def version(request):
@@ -258,12 +257,12 @@ server.add_route("/version", version)
 server.add_route("/", root)
 server.add_route("/relay1_on", relay1_on)
 server.add_route("/relay1_off", relay1_off)
-server.add_route("/relay2_on", relay1_on)
-server.add_route("/relay2_off", relay1_off)
-server.add_route("/relay3_on", relay1_on)
-server.add_route("/relay3_off", relay1_off)
-server.add_route("/relay4_on", relay1_on)
-server.add_route("/relay4_off", relay1_off)
+server.add_route("/relay2_on", relay2_on)
+server.add_route("/relay2_off", relay2_off)
+server.add_route("/relay3_on", relay3_on)
+server.add_route("/relay3_off", relay3_off)
+server.add_route("/relay4_on", relay4_on)
+server.add_route("/relay4_off", relay4_off)
 
 print ("starting http server")
 ''' start server '''
