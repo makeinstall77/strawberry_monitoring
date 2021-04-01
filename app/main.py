@@ -104,9 +104,14 @@ def show_moisture(request):
     server.send("HTTP/1.0 200 OK\r\n")
     server.send("Content-Type: application/json\r\n\r\n")
     server.send(json_str)
+    server.send("Connection: close");
     blueled.off()
     
 def reboot(request):
+    server.send("HTTP/1.1 200 OK\r\n")
+    server.send("Content-type:text/html")
+    server.send("reboot");
+    server.send("Connection: close");
     machine.reset()
 
 ''' add request handler '''
