@@ -7,25 +7,25 @@ import gc
 import senko
 print("booting")
 
-OTA = senko.Senko(
-    user="makeinstall77", # Required
-  repo="strawberry_monitoring", # Required
-  branch="main", # Optional: Defaults to "master"
-  working_dir="app", # Optional: Defaults to "app"
-  files = ["boot.py", "main.py"]
-)
+# OTA = senko.Senko(
+    # user="makeinstall77", # Required
+  # repo="strawberry_monitoring", # Required
+  # branch="main", # Optional: Defaults to "master"
+  # working_dir="app", # Optional: Defaults to "app"
+  # files = ["boot.py", "main.py"]
+# )
 
-try:
-    # if OTA.fetch():
-        # print("A newer version is available!")
-    if OTA.update():
-        print("Updated to the latest version! Rebooting...")
-        machine.reset()
-    else:
-        print("Up to date!")
-except:
-    print ("error while checking new version")
-    pass
+# try:
+    # # if OTA.fetch():
+        # # print("A newer version is available!")
+    # if OTA.update():
+        # print("Updated to the latest version! Rebooting...")
+        # machine.reset()
+    # else:
+        # print("Up to date!")
+# except:
+    # print ("error while checking new version")
+    # pass
 
 #import webrepl
 #webrepl.start()
