@@ -12,6 +12,25 @@ from micropyserver import MicroPyServer
 ver = "version: 0.544"
 print (ver)
 
+html = '''<!DOCTYPE html>
+<html>
+<head>
+<title>ESP32 Web Server</title>
+</head>
+<body>
+ <h1>ESP32 Web Server</h1>
+ <p>system</p>
+ <p>%s</p>
+ <p><a href="/reboot"><button>reboot</button></a></p>
+ <p>GPIO 26 - State</p>
+ <p><a href="/26/on"><button>ON</button></a></p>
+ <p><a href="/26/off"><button>OFF</button></a></p>
+ <p>GPIO 27 - State</p>
+ <p><a href="/27/on"><button>ON</button></a></p>
+ <p><a href="/27/off"><button>OFF</button></a></p>
+</body>
+</html>''' 
+
 OTA = senko.Senko(
   user="makeinstall77", # Required
   repo="strawberry_monitoring", # Required
@@ -118,21 +137,7 @@ def version(request):
 
 
 def root(req):
-    server.send('''<!DOCTYPE html>
-<html>
-<head>
-<title>ESP32 Web Server</title>
-</head>
-<body>
- <h1>ESP32 Web Server</h1>
- <p>GPIO 26 - State</p>
- <p><a href="/26/on"><button>ON</button></a></p>
- <p><a href="/26/off"><button>OFF</button></a></p>
- <p>GPIO 27 - State</p>
- <p><a href="/27/on"><button>ON</button></a></p>
- <p><a href="/27/off"><button>OFF</button></a></p>
-</body>
-</html>''')
+    server.send(html, (ver,))
 
 
 ''' add request handler '''
