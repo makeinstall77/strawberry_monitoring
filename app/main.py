@@ -81,14 +81,26 @@ def uptime():
     
 def relay_state(n):
     if n == 1:
-        print(relay1.value())
-        return relay1.value()
+        if relay1.value() == 1:
+            rez = "off"
+        elif relay1.value() == 0:
+            rez = "on"
     elif n == 2:
-        return relay2.value()
+        if relay2.value() == 1:
+            rez = "off"
+        elif relay2.value() == 0:
+            rez = "on"
     elif n == 3:
-        return relay3.value()
+        if relay3.value() == 1:
+            rez = "off"
+        elif relay3.value() == 0:
+            rez = "on"
     elif n == 4:
-        return relay4.value()
+        if relay4.value() == 1:
+            rez = "off"
+        elif relay4.value() == 0:
+            rez = "on"
+    return rez
 
 def kalman(var):
     global varVolt
@@ -180,16 +192,16 @@ def root(req):
  <p>%s</p>
  <p>%s</p>
  <p><a href="/reboot"><button class="button">reboot</button></a></p>
- <p>Relay 1 - State %</p>
+ <p>Relay 1 - State %s</p>
  <p><a href="/relay1/on"><button class="button">ON</button></a></p>
  <p><a href="/relay1/off"><button class="button
 button2">OFF</button></a></p>
- <p>Relay 2 - State %</p>
+ <p>Relay 2 - State %s</p>
  <p><a href="/relay2/on"><button class="button">ON</button></a></p>
  <p><a href="/relay2/off"><button class="button
 button2">OFF</button></a></p>
 </body>
-</html>''' % (ver, uptime(), relay_state(1), relay_state(2))
+</html>''' % (ver, uptime(), str(relay_state(1)), str(relay_state(2)))
     server.send(html)
 
 
