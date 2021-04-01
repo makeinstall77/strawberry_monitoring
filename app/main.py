@@ -51,8 +51,6 @@ if wlan.isconnected() == False:
         
 print('IP by DHCP:', wlan.ifconfig()[0])
 
-
-
 time.sleep(3)
 
 try:
@@ -78,7 +76,30 @@ Xe = 0.0
 
 def uptime():
     u = utime.time() - int(start)
-    u = "Uptime: " + str(u)
+    s = 0
+    m = 0
+    h = 0
+    d = 0
+    if u > 59:
+        m = u // 60
+        s = u % 60
+            if m > 59:
+                h = m // 60
+                m = m % 60
+                    if h > 23:
+                        d = h // 24
+                        h = h % 24
+                        
+    if len(str(m) == 1 :
+        m = "0" + str(m)
+    
+    if len(str(s) == 1 :
+        m = "0" + str(s)
+        
+    if len(str(h) == 1 :
+        m = "0" + str(h)
+        
+    u = "Uptime: " + str(d) + "d, " + str(h) + ":" + str(m) + ":" + str(s)
     return u
     
 def relay_state(n):
