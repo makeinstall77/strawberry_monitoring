@@ -11,7 +11,7 @@ from micropyserver import MicroPyServer
 
 start = utime.time()
 
-ver = "version: 0.550"
+ver = "version: 0.551"
 print (ver)
 
 OTA = senko.Senko(
