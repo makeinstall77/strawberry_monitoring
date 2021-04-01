@@ -262,7 +262,7 @@ def root(request):
 </head>
 <body>
  <h1>Strawberry monitoring</h1>
- <p><h2>System:<h2></p>
+ <h2>System:</h2>
  <p>%s</p>
  <p>%s</p>
  <p><a href="/reboot"><button class="button">reboot</button></a></p>
