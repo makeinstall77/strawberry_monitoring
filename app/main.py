@@ -22,8 +22,8 @@ OTA = senko.Senko(
 )
 
 relay1 = Pin(0, Pin.OUT)
-relay2 = Pin(12, Pin.OUT)
-relay3 = Pin(13, Pin.OUT)
+relay2 = Pin(13, Pin.OUT)
+relay3 = Pin(12, Pin.OUT)
 relay4 = Pin(4, Pin.OUT)
 
 relay1.on()
