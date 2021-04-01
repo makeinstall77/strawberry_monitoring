@@ -157,8 +157,6 @@ def show_data(request):
     blueled.on()
     ''' request handler '''
     d = dht.DHT11(Pin(14))
-    # roms = ds_sensor.scan()
-    # ds_sensor.convert_temp()
     d.measure()
     hum = round(kalman(d.humidity()))
     data = {"temperature":  d.temperature(), "humidity": hum}
@@ -230,6 +228,9 @@ def relay4_off(request):
     server.send("Location: ./\r\n")
 
 def root(request):
+    d = dht.DHT11(Pin(14))
+    d.measure()
+    
     html = '''<!DOCTYPE html>
 <html>
 <head>
@@ -268,8 +269,11 @@ def root(request):
  %s
  %s
  %s
+ <h2>Sensors:</h2>
+ <p>Temperature: %s</p>
+ <p>Humidity: %s</p>
 </body>
-</html>''' % (ver, uptime(), str(relay_state(1)), str(relay_state(2)), str(relay_state(3)), str(relay_state(4)))
+</html>''' % (ver, uptime(), str(relay_state(1)), str(relay_state(2)), str(relay_state(3)), str(relay_state(4)), d.temperature(), d.temperature(), humidity() + 8)
     server.send(html)
 
 
