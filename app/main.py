@@ -19,8 +19,6 @@ OTA = senko.Senko(
   files = ["boot.py", "main.py"]
 )
 
-
-
 # ds_pin = machine.Pin(4)
 # ds_sensor = ds18x20.DS18X20(onewire.OneWire(ds_pin))
 
@@ -107,10 +105,14 @@ def show_moisture(request):
     server.send("Content-Type: application/json\r\n\r\n")
     server.send(json_str)
     blueled.off()
+    
+def reboot(request):
+    machine.reset()
 
 ''' add request handler '''
 server.add_route("/data", show_data)
 server.add_route("/moisture", show_moisture)
+server.add_route("/reboot", reboot)
 
 print ("starting http server")
 ''' start server '''
