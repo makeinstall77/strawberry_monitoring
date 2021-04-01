@@ -16,6 +16,7 @@ print (ver)
 def uptime:
     u = utime.time() - start
     return u
+    
 html = '''<!DOCTYPE html>
 <html>
 <head>
@@ -49,7 +50,7 @@ html = '''<!DOCTYPE html>
  <p><h2>System:<h2></p>
  <p>%s</p>
  <p>%s</p>
- <p><a href="/reboot"><button>reboot</button></a></p>
+ <p><a href="/reboot"><button class="button">reboot</button></a></p>
  <p>GPIO 26 - State</p>
  <p><a href="/26/on"><button class="button">ON</button></a></p>
  <p><a href="/26/off"><button class="button
