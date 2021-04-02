@@ -48,7 +48,7 @@ if wlan.isconnected() == False:
     wlan.connect(wlan_id, wlan_pass)
     while wlan.isconnected() == False:
         time.sleep(1)
-        
+
 print('IP by DHCP:', wlan.ifconfig()[0])
 
 time.sleep(3)
@@ -80,7 +80,7 @@ def uptime():
     m = 0
     h = 0
     d = 0
-    
+
     if u > 59 :
         m = u // 60
         s = u % 60
@@ -92,19 +92,19 @@ def uptime():
                 h = h % 24
     else:
         s = u
-    
+
     if len(str(m)) == 1 :
         m = "0" + str(m)
-    
+
     if len(str(s)) == 1 :
         s = "0" + str(s)
-        
+
     if len(str(h)) == 1 :
         h = "0" + str(h)
-        
+
     u = "Uptime: " + str(d) + "d, " + str(h) + ":" + str(m) + ":" + str(s)
     return u
-    
+
 def relay_state(n):
     if n == 1:
         if relay1.value() == 1:
@@ -157,7 +157,7 @@ def show_data(request):
     server.send("Content-Type: application/json\r\n\r\n")
     server.send(json_str)
     blueled.off()
-    
+
 def show_moisture(request):
     blueled.on()
     m_vin.on()
@@ -170,12 +170,12 @@ def show_moisture(request):
     server.send(json_str)
     server.send("Connection: close");
     blueled.off()
-    
+
 def reboot(request):
     server.send("HTTP/1.1 302 Found\r\n")
     server.send("Location: ./\r\n")
     machine.reset()
-    
+
 def version(request):
     server.send(ver)
 
@@ -183,47 +183,75 @@ def relay1_on(request):
     relay1.off()
     server.send("HTTP/1.1 302 Found\r\n")
     server.send("Location: ./\r\n")
-    
+
 def relay1_off(request):
     relay1.on()
     server.send("HTTP/1.1 302 Found\r\n")
     server.send("Location: ./\r\n")
-    
+
 def relay2_on(request):
     relay2.off()
     server.send("HTTP/1.1 302 Found\r\n")
     server.send("Location: ./\r\n")
-    
+
 def relay2_off(request):
     relay2.on()
     server.send("HTTP/1.1 302 Found\r\n")
     server.send("Location: ./\r\n")
-    
+
 def relay3_on(request):
     relay3.off()
     server.send("HTTP/1.1 302 Found\r\n")
     server.send("Location: ./\r\n")
-    
+
 def relay3_off(request):
     relay3.on()
     server.send("HTTP/1.1 302 Found\r\n")
     server.send("Location: ./\r\n")
-    
+
 def relay4_on(request):
     relay4.off()
     server.send("HTTP/1.1 302 Found\r\n")
     server.send("Location: ./\r\n")
-    
+
 def relay4_off(request):
     relay4.on()
     server.send("HTTP/1.1 302 Found\r\n")
     server.send("Location: ./\r\n")
 
+def relay1_status(request):
+    if relay1.value() == 1:
+        s = 0
+    else:
+        s = 1
+    server.send(str(s))
+
+def relay2_status(request):
+    if relay2.value() == 1:
+        s = 0
+    else:
+        s = 1
+    server.send(str(s))
+
+def relay3_status(request):
+    if relay3.value() == 1:
+        s = 0
+    else:
+        s = 1
+    server.send(str(s))
+
+def relay4_status(request):
+    if relay4.value() == 1:
+        s = 0
+    else:
+        s = 1
+    server.send(str(s))
+
 def root(request):
     d = dht.DHT11(Pin(14))
     d.measure()
     hum = d.humidity() + 8
-    
+
     html = '''<!DOCTYPE html>
 <html>
 <head>
@@ -287,6 +315,10 @@ server.add_route("/relay3_on", relay3_on)
 server.add_route("/relay3_off", relay3_off)
 server.add_route("/relay4_on", relay4_on)
 server.add_route("/relay4_off", relay4_off)
+server.add_route("/relay1_status", relay1_status)
+server.add_route("/relay2_status", relay2_status)
+server.add_route("/relay3_status", relay3_status)
+server.add_route("/relay4_status", relay4_status)
 
 print ("starting http server")
 ''' start server '''
