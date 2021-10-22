@@ -1,25 +1,11 @@
-import json
 import dht
 import network
 import time
-import senko
-import utime
 from config import *
 from machine import Pin
 from micropyserver import MicroPyServer
+gc.collect()
 
-start = utime.time()
-
-ver = "version: 0.558"
-print (ver)
-
-OTA = senko.Senko(
-  user="makeinstall77", # Required
-  repo="strawberry_monitoring", # Required
-  branch="main", # Optional: Defaults to "master"
-  working_dir="app", # Optional: Defaults to "app"
-  files = ["boot.py", "main.py"]
-)
 
 relay1 = Pin(0, Pin.OUT)
 relay2 = Pin(13, Pin.OUT)
@@ -44,29 +30,24 @@ wlan = network.WLAN(network.STA_IF)
 wlan.active(True)
 server = MicroPyServer()
 
-if wlan.isconnected() == False:
-    wlan.connect(wlan_id, wlan_pass)
-    while wlan.isconnected() == False:
-        time.sleep(1)
+# if wlan.isconnected() == False:
+    # wlan.connect(wlan_id, wlan_pass)
+    # while wlan.isconnected() == False:
+        # time.sleep(1)
+        
+while wlan.isconnected() == False:
+    print("trying hui")
+    wlan.connect(ssid2, password2)
+    time.sleep(15)
+    if wlan.isconnected() == False:
+        print("trying random")
+        wlan.connect(ssid, password)
+        time.sleep(15)
 
 print('IP by DHCP:', wlan.ifconfig()[0])
 
-time.sleep(3)
-
-# try:
-    # if OTA.update():
-        # print("Updated to the latest version! Rebooting...")
-        # machine.reset()
-    # else:
-        # print("Up to date!")
-# except Exception as e:
-    # print (e)
-    # pass
-
-print("OTA end")
-
-varVolt = 4.1339 # среднее отклонение (ищем в excel)
-varProcess = 0.05 # скорость реакции на изменение (подбирается вручную)
+varVolt = 4.1339
+varProcess = 0.05
 Pc = 0.0
 G = 0.0
 P = 1.0
@@ -74,58 +55,27 @@ Xp = 0.0
 Zp = 0.0
 Xe = 0.0
 
-def uptime():
-    u = utime.time() - int(start)
-    s = 0
-    m = 0
-    h = 0
-    d = 0
-
-    if u > 59 :
-        m = u // 60
-        s = u % 60
-        if m > 59 :
-            h = m // 60
-            m = m % 60
-            if h > 23 :
-                d = h // 24
-                h = h % 24
-    else:
-        s = u
-
-    if len(str(m)) == 1 :
-        m = "0" + str(m)
-
-    if len(str(s)) == 1 :
-        s = "0" + str(s)
-
-    if len(str(h)) == 1 :
-        h = "0" + str(h)
-
-    u = "Uptime: " + str(d) + "d, " + str(h) + ":" + str(m) + ":" + str(s)
-    return u
-
 def relay_state(n):
     if n == 1:
         if relay1.value() == 1:
-            rez = """<p><a href="/relay1_on"><button class="button button2">Relay 1 OFF</button></a></p>"""
+            rez = 0
         elif relay1.value() == 0:
-            rez = """<p><a href="/relay1_off"><button class="button">Relay 1 ON</button></a></p>"""
+            rez = 1
     elif n == 2:
         if relay2.value() == 1:
-            rez = """<p><a href="/relay2_on"><button class="button button2">Relay 2 OFF</button></a></p>"""
+            rez = 0
         elif relay2.value() == 0:
-            rez = """<p><a href="/relay2_off"><button class="button">Relay 2 ON</button></a></p>"""
+            rez = 1
     elif n == 3:
         if relay3.value() == 1:
-            rez = """<p><a href="/relay3_on"><button class="button button2">Relay 3 OFF</button></a></p>"""
+            rez = 0
         elif relay3.value() == 0:
-            rez = """<p><a href="/relay3_off"><button class="button">Relay 3 ON</button></a></p>"""
+            rez = 1
     elif n == 4:
         if relay4.value() == 1:
-            rez = """<p><a href="/relay4_on"><button class="button button2">Relay 4 OFF</button></a></p>"""
+            rez = 0
         elif relay4.value() == 0:
-            rez = """<p><a href="/relay4_off"><button class="button">Relay 4 ON</button></a></p>"""
+            rez = 1
     return rez
 
 def kalman(var):
@@ -147,166 +97,72 @@ def kalman(var):
 
 def show_data(request):
     blueled.on()
-    ''' request handler '''
     d = dht.DHT11(Pin(14))
     d.measure()
     hum = round(kalman(d.humidity()))
-    data = {"temperature":  d.temperature(), "humidity": hum}
-    json_str = json.dumps(data)
-    server.send("HTTP/1.0 200 OK\r\n")
-    server.send("Content-Type: application/json\r\n\r\n")
-    server.send(json_str)
+    server.send(str(d.temperature()) + "," + str(hum))
     blueled.off()
 
 def show_moisture(request):
     blueled.on()
     m_vin.on()
+    s = str(adc.read())
     time.sleep(1)
-    data = {"moisture": adc.read()}
     m_vin.off()
-    json_str = json.dumps(data)
-    server.send("HTTP/1.0 200 OK\r\n")
-    server.send("Content-Type: application/json\r\n\r\n")
-    server.send(json_str)
-    server.send("Connection: close");
+    server.send(s);
     blueled.off()
 
 def reboot(request):
-    server.send("HTTP/1.1 302 Found\r\n")
-    server.send("Location: ./\r\n")
     machine.reset()
-
-def version(request):
-    server.send(ver)
 
 def relay1_on(request):
     relay1.off()
-    server.send("HTTP/1.1 302 Found\r\n")
-    server.send("Location: ./\r\n")
+    relay1_status(request)
 
 def relay1_off(request):
     relay1.on()
-    server.send("HTTP/1.1 302 Found\r\n")
-    server.send("Location: ./\r\n")
+    relay1_status(request)
 
 def relay2_on(request):
     relay2.off()
-    server.send("HTTP/1.1 302 Found\r\n")
-    server.send("Location: ./\r\n")
+    relay2_status(request)
 
 def relay2_off(request):
     relay2.on()
-    server.send("HTTP/1.1 302 Found\r\n")
-    server.send("Location: ./\r\n")
+    relay2_status(request)
 
 def relay3_on(request):
     relay3.off()
-    server.send("HTTP/1.1 302 Found\r\n")
-    server.send("Location: ./\r\n")
+    relay3_status(request)
 
 def relay3_off(request):
     relay3.on()
-    server.send("HTTP/1.1 302 Found\r\n")
-    server.send("Location: ./\r\n")
+    relay3_status(request)
 
 def relay4_on(request):
     relay4.off()
-    server.send("HTTP/1.1 302 Found\r\n")
-    server.send("Location: ./\r\n")
+    relay4_status(request)
 
 def relay4_off(request):
     relay4.on()
-    server.send("HTTP/1.1 302 Found\r\n")
-    server.send("Location: ./\r\n")
+    relay4_status(request)
 
 def relay1_status(request):
-    if relay1.value() == 1:
-        s = 0
-    else:
-        s = 1
-    server.send(str(s))
+    server.send(str(relay_state(1)))
 
 def relay2_status(request):
-    if relay2.value() == 1:
-        s = 0
-    else:
-        s = 1
-    server.send(str(s))
+    server.send(str(relay_state(2)))
 
 def relay3_status(request):
-    if relay3.value() == 1:
-        s = 0
-    else:
-        s = 1
-    server.send(str(s))
+    server.send(str(relay_state(3)))
 
 def relay4_status(request):
-    if relay4.value() == 1:
-        s = 0
-    else:
-        s = 1
-    server.send(str(s))
-
-def root(request):
-    d = dht.DHT11(Pin(14))
-    d.measure()
-    hum = d.humidity() + 8
-
-    html = '''<!DOCTYPE html>
-<html>
-<head>
- <title>Strawberry monitoring</title>
- <meta name="viewport" content="width=device-width, initialscale=1">
- <meta http-equiv="refresh" content="30" />
- <link rel="icon" href="data:,">
-  <style>
-    html {
-      font-family: Helvetica;
-      display: inline-block;
-      margin: 0px auto;
-      text-align: center;
-    }
-    .button {
-      background-color: #4CAF50;
-      border: none;
-      color: white;
-      padding: 16px 40px;
-      text-decoration: none;
-      font-size: 30px;
-      margin: 2px;
-      cursor: pointer;
-    }
-    .button2 {
-      background-color: #555555;
-    }
-  </style>
-</head>
-<body>
- <h1>Strawberry monitoring</h1>
- <h2>System:</h2>
- <p>%s</p>
- <p>%s</p>
- <p><a href="/reboot"><button class="button">reboot</button></a></p>
- %s
- %s
- %s
- %s
- <h2>Sensors:</h2>
- <p>Temperature: %s</p>
- <p>Humidity: %s</p>
-</body>
-</html>''' % (ver, uptime(), str(relay_state(1)), str(relay_state(2)), str(relay_state(3)), str(relay_state(4)), str(d.temperature()), str(hum))
-    server.send(html)
-
-
+    server.send(str(relay_state(4)))
 
 ''' add request handler '''
 server.add_route("/data", show_data)
 server.add_route("/moisture", show_moisture)
 server.add_route("/reboot", reboot)
-server.add_route("/version", version)
-server.add_route("/version", version)
-server.add_route("/", root)
 server.add_route("/relay1_on", relay1_on)
 server.add_route("/relay1_off", relay1_off)
 server.add_route("/relay2_on", relay2_on)
